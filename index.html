@@ -7,8 +7,18 @@
   <body>
     <ul id="app"></ul>
     <!-- built files will be auto injected -->
-    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script> -->
     <script>
+      function videolist_request (json) {
+        var template = ''
+        json.data.list.forEach(function (item) {
+          template += '<li><a href="' + item.url + '">' + item.title + '</a></li>'
+        })
+        document.querySelector('#app').innerHTML = template
+      }
+    </script>
+    <script src="http://apis.web.pptv.com/show/videoList?from=web&version=1.0.0&format=jsonp&pid=8077158&cat_id=5&vt=22&cb=videolist_request"></script>
+    <!-- <script>
       $(function() {
         $.ajax({
           url: 'http://apis.web.pptv.com/show/videoList?from=web&version=1.0.0&format=jsonp&pid=8077158&cat_id=5&vt=22&cb=videolist_request',
@@ -22,6 +32,6 @@
           }
         })
       })
-    </script>
+    </script> -->
   </body>
 </html>
