@@ -5,7 +5,23 @@
     <title>test</title>
   </head>
   <body>
-    <div id="app"></div>
+    <ul id="app"></ul>
     <!-- built files will be auto injected -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $.ajax({
+          url: 'http://apis.web.pptv.com/show/videoList?from=web&version=1.0.0&format=jsonp&pid=8077158&cat_id=5&vt=22&cb=videolist_request',
+          type: 'GET',
+          dataType: 'jsonp',
+          jsonpCallback: 'videolist_request',
+          success: function (data) {
+            data.data.list.forEach(function (item) {
+              $('#app').append('<li><a href="' + item.url + '">' + item.title + '</a></li>')
+            })
+          }
+        })
+      })
+    </script>
   </body>
 </html>
